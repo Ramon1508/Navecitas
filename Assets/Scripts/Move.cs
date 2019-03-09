@@ -54,9 +54,9 @@ public class Move : MonoBehaviour
             transform.Translate(Vector3.up * deltaMove * Time.deltaTime);
         if (Input.GetKey(KeyCode.S))
             transform.Translate(Vector3.down * deltaMove * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && transform.position.x > -48)
             transform.Translate(Vector3.left * deltaMove * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && transform.position.x < 38)
             transform.Translate(Vector3.right * deltaMove * Time.deltaTime);
     }
 }
