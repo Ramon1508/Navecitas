@@ -19,14 +19,13 @@ public class NaveGiro : MonoBehaviour
     }
     void Girar() {
         if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && (transform.rotation.eulerAngles.x < 10 || (transform.rotation.eulerAngles.x > 345 && transform.rotation.eulerAngles.x < 360)))
             transform.Rotate(new Vector3(GiroY, 0f, 0f) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && (transform.rotation.eulerAngles.x < 11 || (transform.rotation.eulerAngles.x > 350 && transform.rotation.eulerAngles.x < 360)))
             transform.Rotate(new Vector3(-GiroY, 0f, 0f) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A))
-        if (Input.GetKey(KeyCode.A) && (transform.rotation.eulerAngles.z < 50 || (transform.rotation.eulerAngles.magnitude > 315 && transform.rotation.eulerAngles.magnitude < 360)))
+        if (Input.GetKey(KeyCode.A) && (transform.rotation.eulerAngles.z < 50 || (transform.rotation.eulerAngles.z > 315 && transform.rotation.eulerAngles.z < 360)))
             transform.Rotate(new Vector3(0f, 0f, -GiroX) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D))
-        if (Input.GetKey(KeyCode.D) && (transform.rotation.eulerAngles.z < 45 || (transform.rotation.eulerAngles.magnitude > 315 && transform.rotation.eulerAngles.magnitude < 360)))
+        if (Input.GetKey(KeyCode.D) && (transform.rotation.eulerAngles.z < 45 || (transform.rotation.eulerAngles.z > 314 && transform.rotation.eulerAngles.z < 360)))
             transform.Rotate(new Vector3(0f, 0f, GiroX) * Time.deltaTime);
     }
 }
