@@ -9,6 +9,7 @@ public class NaveGiro : MonoBehaviour
     public GameObject nuke;
     bool timeron = false;
     public float tiempo = 10;
+    float tiempogiro = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class NaveGiro : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Girar();
         if (timeron) {
@@ -24,6 +25,11 @@ public class NaveGiro : MonoBehaviour
             if (tiempo <= 0) {
                 Application.Quit();
             }
+        }
+        tiempogiro -= Time.deltaTime;
+        if (tiempogiro <= 0) {
+            tiempogiro = 10;
+            transform.eulerAngles = new Vector3(180f, 0f, 180f);
         }
     }
     void Girar() {
@@ -38,7 +44,7 @@ public class NaveGiro : MonoBehaviour
     }
     void OnCollisionEnter(Collision colision)
     {
-        if (colision.gameObject.tag == "ObjetivoHielo") {
+        if (colision.gameObject.tag == "Objetivo") {
             Destroy(this.gameObject);
             timeron = true;
             var Explosion = Instantiate(nuke, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);

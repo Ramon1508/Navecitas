@@ -17,13 +17,13 @@ public class Move : MonoBehaviour
     }
     void Movement()
     {
-        if (Input.GetKey(KeyCode.S) && transform.position.y < 25)
+        if (Input.GetKey(KeyCode.S) && transform.position.y < 50)
             transform.Translate(Vector3.up * deltaMove * Time.deltaTime);
-        if (Input.GetKey(KeyCode.W) && transform.position.y > -46.80173)
+        if (Input.GetKey(KeyCode.W) && transform.position.y > -93.60346)
             transform.Translate(Vector3.down * deltaMove * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A) && transform.position.x > -30)
+        if (Input.GetKey(KeyCode.A) && transform.position.x > -80)
             transform.Translate(Vector3.left * deltaMove * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D) && transform.position.x < 20)
+        if (Input.GetKey(KeyCode.D) && transform.position.x < 60)
             transform.Translate(Vector3.right * deltaMove * Time.deltaTime);
     }
 }

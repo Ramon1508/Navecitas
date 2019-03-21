@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VidaDisparo : MonoBehaviour
 {
-    public GameObject Objetivo;
     public int tiempopresuicidio = 5;
     Rigidbody rigidbody;
     // Start is called before the first frame update
@@ -21,7 +20,7 @@ public class VidaDisparo : MonoBehaviour
     }
     void OnCollisionEnter(Collision colision)
     {
-        if (colision.gameObject.tag == Objetivo.tag) {
+        if (colision.gameObject.tag == "Objetivo") {
             Destroy(this.gameObject);
         }
     }
