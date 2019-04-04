@@ -5,8 +5,8 @@ using UnityEngine;
 public class Objetivo : MonoBehaviour
 {
     public int vida = 5;
-    public int tiempopresuicidio = 5;
-    public Material material;
+    public int tiempopresuicidio = 2;
+    public GameObject explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +23,9 @@ public class Objetivo : MonoBehaviour
         if (colision.gameObject.tag == "Bala") {
             vida = vida-1;
             if (vida <= 0){
-                var renderer = GetComponent<Renderer>();
-                renderer.material = material;
-                Destroy(this.gameObject, tiempopresuicidio);
+                var Bum = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                Destroy(this.gameObject);
+                Destroy(Bum, tiempopresuicidio);
             }
         }
     }

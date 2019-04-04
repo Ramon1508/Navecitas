@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public bool timeron = false;
+    public float tiempo = 5;
     public float deltaMove = 10f;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +16,15 @@ public class Move : MonoBehaviour
     void Update()
     {
         Movement();
+    }
+    void FixedUpdate() {
+        if (timeron) {
+            tiempo -= Time.deltaTime;
+            if (tiempo <= 0) {
+                Application.Quit();
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+        }
     }
     void Movement()
     {

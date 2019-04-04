@@ -7,8 +7,6 @@ public class NaveGiro : MonoBehaviour
     public float GiroX = 1;
     public float GiroY = 1;
     public GameObject nuke;
-    bool timeron = false;
-    public float tiempo = 10;
     float tiempogiro = 10;
     // Start is called before the first frame update
     void Start()
@@ -20,12 +18,6 @@ public class NaveGiro : MonoBehaviour
     void FixedUpdate()
     {
         Girar();
-        if (timeron) {
-            tiempo -= Time.deltaTime;
-            if (tiempo <= 0) {
-                Application.Quit();
-            }
-        }
         tiempogiro -= Time.deltaTime;
         if (tiempogiro <= 0) {
             tiempogiro = 10;
@@ -45,8 +37,13 @@ public class NaveGiro : MonoBehaviour
     void OnCollisionEnter(Collision colision)
     {
         if (colision.gameObject.tag == "Objetivo") {
+            GameObject personaje = GameObject.Find("Personaje");
+            GameObject pistola = GameObject.Find("Pistola");
+            GameObject canvascruz = GameObject.Find("CanvasCruz");
             Destroy(this.gameObject);
-            timeron = true;
+            Destroy(pistola);
+            Destroy(canvascruz);
+            personaje.GetComponent<Move>().timeron = true;
             var Explosion = Instantiate(nuke, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
         }
     }
