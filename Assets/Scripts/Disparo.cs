@@ -16,8 +16,19 @@ public class Disparo : MonoBehaviour
     {
         Shoot();
     }
+    bool verificardisparo() {
+        return Input.GetKeyUp(KeyCode.Space) || 
+        Input.GetKeyDown(KeyCode.Joystick1Button0) ||
+        Input.GetKeyDown(KeyCode.Joystick1Button1) || 
+        Input.GetKeyDown(KeyCode.Joystick1Button2) ||
+        Input.GetKeyDown(KeyCode.Joystick1Button3) ||
+        Input.GetKeyDown(KeyCode.Joystick1Button4) ||
+        Input.GetKeyDown(KeyCode.Joystick1Button6) ||
+        Input.GetKeyDown(KeyCode.Joystick1Button7);
+    }
     void Shoot(){
-        if (Input.GetKeyUp(KeyCode.Space)){
+        if (verificardisparo()){
+            GameObject mira = GameObject.Find("CanvasCruz");
             var NuevoDisparo = Instantiate(bala, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), transform.rotation);
             NuevoDisparo.GetComponent<Rigidbody>().AddForce(Vector3.back * fuerzabala, ForceMode.VelocityChange);
         }

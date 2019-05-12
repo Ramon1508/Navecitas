@@ -5,11 +5,9 @@ using UnityEngine;
 public class VidaDisparo : MonoBehaviour
 {
     public int tiempopresuicidio = 5;
-    Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         Destroy(this.gameObject, tiempopresuicidio);
     }
 

@@ -25,14 +25,26 @@ public class NaveGiro : MonoBehaviour
         }
     }
     void Girar() {
-        if (Input.GetKey(KeyCode.W) && (transform.rotation.eulerAngles.x < 10 || (transform.rotation.eulerAngles.x > 345 && transform.rotation.eulerAngles.x < 360)))
+        if (Arriba() && (transform.rotation.eulerAngles.x < 10 || (transform.rotation.eulerAngles.x > 345 && transform.rotation.eulerAngles.x < 360)))
             transform.Rotate(new Vector3(GiroY, 0f, 0f) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S) && (transform.rotation.eulerAngles.x < 11 || (transform.rotation.eulerAngles.x > 350 && transform.rotation.eulerAngles.x < 360)))
+        if (Abajo() && (transform.rotation.eulerAngles.x < 11 || (transform.rotation.eulerAngles.x > 350 && transform.rotation.eulerAngles.x < 360)))
             transform.Rotate(new Vector3(-GiroY, 0f, 0f) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D) && (transform.rotation.eulerAngles.z < 50 || (transform.rotation.eulerAngles.z > 315 && transform.rotation.eulerAngles.z < 360)))
+        if (Derecha() && (transform.rotation.eulerAngles.z < 50 || (transform.rotation.eulerAngles.z > 315 && transform.rotation.eulerAngles.z < 360)))
             transform.Rotate(new Vector3(0f, 0f, -GiroX) * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A) && (transform.rotation.eulerAngles.z < 45 || (transform.rotation.eulerAngles.z > 314 && transform.rotation.eulerAngles.z < 360)))
+        if (Izquierda() && (transform.rotation.eulerAngles.z < 45 || (transform.rotation.eulerAngles.z > 314 && transform.rotation.eulerAngles.z < 360)))
             transform.Rotate(new Vector3(0f, 0f, GiroX) * Time.deltaTime);
+    }
+    bool Arriba() {
+        return (Input.GetKey(KeyCode.W) || Input.GetKey((KeyCode)IpegaAndroid.AXIS_LEFT_X) || Input.GetKey(KeyCode.UpArrow));
+    }
+    bool Abajo() {
+        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetKey(KeyCode.DownArrow));
+    }
+    bool Izquierda() {
+        return (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0 || Input.GetKey(KeyCode.LeftArrow));
+    }
+    bool Derecha() {
+        return (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0 || Input.GetKey(KeyCode.RightArrow));
     }
     void OnCollisionEnter(Collision colision)
     {
