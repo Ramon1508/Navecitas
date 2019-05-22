@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Objetivo : MonoBehaviour
 {
     public int vida = 5;
     public int tiempopresuicidio = 2;
+    public Text lblPuntuacion;
     public GameObject explosion;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(this.gameObject, 10);
     }
 
     // Update is called once per frame
@@ -24,8 +26,11 @@ public class Objetivo : MonoBehaviour
             vida = vida-1;
             if (vida <= 0){
                 var Bum = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-                Destroy(this.gameObject);
+                GameObject Globales = GameObject.Find("Global");
+                Globales.GetComponent<Globales>().puntuacion += 1;
+                lblPuntuacion.text = "Puntuaje: " + Globales.GetComponent<Globales>().puntuacion.ToString();
                 Destroy(Bum, tiempopresuicidio);
+                Destroy(this.gameObject);
             }
         }
     }

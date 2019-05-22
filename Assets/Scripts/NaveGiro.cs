@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NaveGiro : MonoBehaviour
 {
+    public bool timeron = false;
+        public float tiempo = 5;
     public float GiroX = 1;
     public float GiroY = 1;
     public GameObject nuke;
@@ -18,10 +20,17 @@ public class NaveGiro : MonoBehaviour
     void FixedUpdate()
     {
         Girar();
-        tiempogiro -= Time.deltaTime;
+        tiempogiro -= Time.fixedDeltaTime;
         if (tiempogiro <= 0) {
             tiempogiro = 10;
             transform.eulerAngles = new Vector3(180f, 0f, 180f);
+        }
+        if (timeron) {
+            tiempo -= Time.fixedDeltaTime;
+            if (tiempo <= 0) {
+                Application.Quit();
+                //UnityEditor.EditorApplication.isPlaying = false;
+            }
         }
     }
     void Girar() {
@@ -35,27 +44,25 @@ public class NaveGiro : MonoBehaviour
             transform.Rotate(new Vector3(0f, 0f, GiroX) * Time.deltaTime);
     }
     bool Arriba() {
-        return (Input.GetKey(KeyCode.W) || Input.GetKey((KeyCode)IpegaAndroid.AXIS_LEFT_X) || Input.GetKey(KeyCode.UpArrow));
+        return (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0 || Input.GetAxis("BotonesVertical") > 0  || Input.GetKey(KeyCode.UpArrow));
     }
     bool Abajo() {
-        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetKey(KeyCode.DownArrow));
+        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetAxis("BotonesVertical") < 0  || Input.GetKey(KeyCode.DownArrow));
     }
     bool Izquierda() {
-        return (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0 || Input.GetKey(KeyCode.LeftArrow));
+        return (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("BotonesHorizontal") < 0 || Input.GetKey(KeyCode.LeftArrow));
     }
     bool Derecha() {
-        return (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0 || Input.GetKey(KeyCode.RightArrow));
+        return (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0 || Input.GetAxis("BotonesHorizontal") > 0 || Input.GetKey(KeyCode.RightArrow));
     }
     void OnCollisionEnter(Collision colision)
     {
         if (colision.gameObject.tag == "Objetivo") {
-            GameObject personaje = GameObject.Find("Personaje");
+            GameObject Nave = GameObject.Find("Nave");
             GameObject pistola = GameObject.Find("Pistola");
-            GameObject canvascruz = GameObject.Find("CanvasCruz");
             Destroy(this.gameObject);
             Destroy(pistola);
-            Destroy(canvascruz);
-            personaje.GetComponent<Move>().timeron = true;
+            timeron = true;
             var Explosion = Instantiate(nuke, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
         }
     }

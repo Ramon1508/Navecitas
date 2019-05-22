@@ -197,8 +197,7 @@
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
      <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
      <Compile Include="Assets\Scripts\Disparo.cs" />
-     <Compile Include="Assets\Scripts\IpegaAndroid.cs" />
-     <Compile Include="Assets\Scripts\IpegaPC.cs" />
+     <Compile Include="Assets\Scripts\Globales.cs" />
      <Compile Include="Assets\Scripts\Mira.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\NaveGiro.cs" />
