@@ -24,7 +24,7 @@ public class SpawnerObjetivos : MonoBehaviour
     void FixedUpdate()
     {
         tiempopasado -= Time.fixedDeltaTime;
-        if (tiempopasado <= 0 || locura) {//
+        if (locura || tiempopasado <= 0) {//
             tiempopasado = tiempo;
             generarMeteoro();
         }

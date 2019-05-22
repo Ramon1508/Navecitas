@@ -5,7 +5,7 @@ using UnityEngine;
 public class NaveGiro : MonoBehaviour
 {
     public bool timeron = false;
-        public float tiempo = 5;
+    public float tiempo = 5;
     public float GiroX = 1;
     public float GiroY = 1;
     public GameObject nuke;
@@ -44,10 +44,10 @@ public class NaveGiro : MonoBehaviour
             transform.Rotate(new Vector3(0f, 0f, GiroX) * Time.deltaTime);
     }
     bool Arriba() {
-        return (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0 || Input.GetAxis("BotonesVertical") > 0  || Input.GetKey(KeyCode.UpArrow));
+        return (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0 || Input.GetAxis("BotonesVertical") < 0  || Input.GetKey(KeyCode.UpArrow));
     }
     bool Abajo() {
-        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetAxis("BotonesVertical") < 0  || Input.GetKey(KeyCode.DownArrow));
+        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetAxis("BotonesVertical") > 0  || Input.GetKey(KeyCode.DownArrow));
     }
     bool Izquierda() {
         return (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("BotonesHorizontal") < 0 || Input.GetKey(KeyCode.LeftArrow));

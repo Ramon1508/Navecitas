@@ -23,10 +23,10 @@ public class Move : MonoBehaviour
             transform.Translate(Vector3.right * deltaMove * Time.fixedDeltaTime);
     }
     bool Arriba() {
-        return (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0 || Input.GetAxis("BotonesVertical") > 0 || Input.GetKey(KeyCode.UpArrow));
+        return (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0 || Input.GetAxis("BotonesVertical") < 0 || Input.GetKey(KeyCode.UpArrow));
     }
     bool Abajo() {
-        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetAxis("BotonesVertical") < 0 || Input.GetKey(KeyCode.DownArrow));
+        return (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0 || Input.GetAxis("BotonesVertical") > 0 || Input.GetKey(KeyCode.DownArrow));
     }
     bool Izquierda() {
         return (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("BotonesHorizontal") < 0 || Input.GetKey(KeyCode.LeftArrow));
