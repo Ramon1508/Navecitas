@@ -26,9 +26,8 @@ public class Objetivo : MonoBehaviour
             vida = vida-1;
             if (vida <= 0){
                 var Bum = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-                GameObject Globales = GameObject.Find("Global");
-                Globales.GetComponent<Globales>().puntuacion += 1;
-                lblPuntuacion.text = "Puntuaje: " + Globales.GetComponent<Globales>().puntuacion.ToString();
+                Globales.puntuacion += 1;
+                lblPuntuacion.text = "Puntuaje: " + Globales.puntuacion.ToString();
                 Destroy(Bum, tiempopresuicidio);
                 Destroy(this.gameObject);
             }

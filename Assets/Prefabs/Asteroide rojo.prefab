@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2260049838199400678}
   m_Layer: 0
   m_Name: Asteroide rojo
-  m_TagString: Untagged
+  m_TagString: Objetivo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 685afee8f6d2b934fa946c8e55218cc9, type: 2}
+  - {fileID: 2100000, guid: 311bdcea6069d384bacf70272da99d77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

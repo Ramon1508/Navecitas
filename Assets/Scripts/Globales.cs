@@ -1,20 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary; 
+using System.IO;
 
-public class Globales : MonoBehaviour
+public static class Globales
 {
-    public int puntuacion = 0;
-    public bool locura = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public static int puntuacion = 0;
+    public static bool locura = false;
+    public static List<int> Puntuaciones;
+    public static void Save() {
+        Puntuaciones.Add(puntuacion);
+        Puntuaciones.Sort((x, y) => y.CompareTo(x));
+        int contador = Puntuaciones.Count;
+        if (contador > 10) contador = 10;
+        Puntuaciones = Puntuaciones.GetRange(0,contador);
+        puntuacion = 0;
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create (Application.persistentDataPath + "/savedGames.gd");
+        bf.Serialize(file, Puntuaciones);
+        file.Close();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public static void Load() {
+        if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+            Puntuaciones = (List<int>)bf.Deserialize(file);
+            file.Close();
+        }
+        else {
+            Puntuaciones = new List<int>();
+        }
     }
 }

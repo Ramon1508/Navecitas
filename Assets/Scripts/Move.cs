@@ -6,6 +6,10 @@ public class Move : MonoBehaviour
 {
     public float deltaMove = 10f;
     // Start is called before the first frame update
+    public float xmax = 70f;
+    public float xmin = -93.60346f;
+    public float ymax = 60f;
+    public float ymin = -80f;
     void Start()
     {
     }
@@ -13,13 +17,13 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Abajo() && transform.position.y < 50)
+        if (Abajo() && transform.position.y < xmax)
             transform.Translate(Vector3.up * deltaMove * Time.fixedDeltaTime);
-        if (Arriba() && transform.position.y > -93.60346)
+        if (Arriba() && transform.position.y > xmin)
             transform.Translate(Vector3.down * deltaMove * Time.fixedDeltaTime);
-        if (Izquierda() && transform.position.x > -80)
+        if (Izquierda() && transform.position.x > ymin)
             transform.Translate(Vector3.left * deltaMove * Time.fixedDeltaTime);
-        if (Derecha() && transform.position.x < 60)
+        if (Derecha() && transform.position.x < ymax)
             transform.Translate(Vector3.right * deltaMove * Time.fixedDeltaTime);
     }
     bool Arriba() {

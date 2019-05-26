@@ -8,16 +8,17 @@ public class SpawnerObjetivos : MonoBehaviour
     public List<GameObject> meteoros;
     public Text lblPuntuacion;
     private bool locura;
-    public float tiempo = 0.2f;
-    public float tiempopasado = 0.2f;
+    float tiempo = 0.2f;
+    float tiempopasado = 0.2f;
     System.Random random = new System.Random();
     public float fuerzameteoro = 100f;
     // Start is called before the first frame update
     void Start()
     {
         tiempopasado = tiempo;
-        GameObject Globales = GameObject.Find("Global");
-        locura = Globales.GetComponent<Globales>().locura;
+        locura = Globales.locura;
+        Globales.Load();
+        lblPuntuacion.text = "Puntuaje: " + Globales.puntuacion.ToString();
     }
 
     // Update is called once per frame
@@ -30,8 +31,8 @@ public class SpawnerObjetivos : MonoBehaviour
         }
     }
     void generarMeteoro() {
-        var x = random.Next(-93, 60);
-        var y = random.Next(-93, 60);
+        var x = random.Next(-93, 70);
+        var y = random.Next(-93, 70);
         var i = random.Next(0, meteoros.Count);
         var meteoro = meteoros[i];
         var NuevoDisparo = Instantiate(meteoro, new Vector3(x, y, transform.position.z - 2), transform.rotation);

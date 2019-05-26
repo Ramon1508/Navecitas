@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class NaveGiro : MonoBehaviour
 {
-    public bool timeron = false;
-    public float tiempo = 5;
+    public int tiempo = 5;
     public float GiroX = 1;
     public float GiroY = 1;
     public GameObject nuke;
@@ -24,13 +24,6 @@ public class NaveGiro : MonoBehaviour
         if (tiempogiro <= 0) {
             tiempogiro = 10;
             transform.eulerAngles = new Vector3(180f, 0f, 180f);
-        }
-        if (timeron) {
-            tiempo -= Time.fixedDeltaTime;
-            if (tiempo <= 0) {
-                Application.Quit();
-                //UnityEditor.EditorApplication.isPlaying = false;
-            }
         }
     }
     void Girar() {
@@ -60,10 +53,10 @@ public class NaveGiro : MonoBehaviour
         if (colision.gameObject.tag == "Objetivo") {
             GameObject Nave = GameObject.Find("Nave");
             GameObject pistola = GameObject.Find("Pistola");
+            var Explosion = Instantiate(nuke, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+            Explosion.AddComponent<NukeScript>();
             Destroy(this.gameObject);
             Destroy(pistola);
-            timeron = true;
-            var Explosion = Instantiate(nuke, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
         }
     }
 }
