@@ -205,6 +205,7 @@
      <Compile Include="Assets\Scripts\NaveGiro.cs" />
      <Compile Include="Assets\Scripts\NukeScript.cs" />
      <Compile Include="Assets\Scripts\Objetivo.cs" />
+     <Compile Include="Assets\Scripts\RegresarAlInicio.cs" />
      <Compile Include="Assets\Scripts\SpawnerObjetivos.cs" />
      <Compile Include="Assets\Scripts\VidaDisparo.cs" />
      <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Camera.cs" />

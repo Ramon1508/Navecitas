@@ -18,6 +18,6 @@ public class NukeScript : MonoBehaviour
     }
     private void OnDestroy() {
         Globales.Save();
-        SceneManager.LoadScene("Escena inicial", LoadSceneMode.Single);
+        SceneManager.LoadScene("Escena creditos", LoadSceneMode.Single);
     }
 }
